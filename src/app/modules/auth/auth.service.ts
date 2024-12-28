@@ -6,20 +6,30 @@ import { TUser } from './auth.interface';
 import userModel from '../user/user.model';
 import config from '../../config';
 dotenv.config();
-const userRegisterService = async (payload: TUser) => {
-  const result = await userModel.create(payload);
+const userRegisterService = async (password:string,remaining: TUser) => {
+  const newPassword = password
+
+  const saltRounds = 10;
+    const hash = await bcrypt.hash(newPassword, saltRounds);
+    const userData = {...remaining, password:hash};
+
+  const result = await userModel.create(userData);
 
   return result;
 };
 const userLoginService = async (payload: TUser) => {
   const RegisterUser = await userModel.findOne({ email: payload.email });
+  console.log(RegisterUser)
   if (!RegisterUser) {
     throw new AppErrors(404, 'Invalid credential');
   }
+  console.log( payload.password,
+    RegisterUser.password,)
   const matchPassword = await bcrypt.compare(
     payload.password,
     RegisterUser.password,
   );
+  console.log(matchPassword)
   if (!matchPassword) {
     throw new AppErrors(401, 'Invalid credential');
   }

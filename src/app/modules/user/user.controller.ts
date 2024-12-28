@@ -5,8 +5,8 @@ import { userServices } from "./user.service";
 
 
 const createUser = catchAsync(async (req:Request, res: Response) => {
-  console.log("Incoming useer Data:", req.body);
-  const result = await userServices.createUserIntoDB(req.body);
+   const {password,...remaining}=req.body;
+  const result = await userServices.createUserIntoDB(password,remaining);
 
   sendResponse(res, {
     statusCode: 200,

@@ -1,9 +1,15 @@
 
 import { TUser } from "./user.interface";
 import userModel from "./user.model";
+import bcrypt from "bcrypt";
+const createUserIntoDB =async(password:string,remaining:TUser)=>{
+  const newPassword = password
 
-const createUserIntoDB =(payload:TUser)=>{
- const result = userModel.create(payload);
+  const saltRounds = 10;
+    const hash = await bcrypt.hash(newPassword, saltRounds);
+    const userData = {...remaining, password:hash};
+
+  const result = await userModel.create(userData);
  return result;
 }
 

@@ -11,5 +11,5 @@ const AdminSchema: Schema = new Schema<TAdmin>({
   timestamps: true,
 });
 
-const adminModel = mongoose.model<TUser>("Admin", AdminSchema);
+const adminModel = mongoose.model<TAdmin>("Admin", AdminSchema);
 export default adminModel;

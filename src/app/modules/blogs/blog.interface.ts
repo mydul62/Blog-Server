@@ -1,15 +1,10 @@
-// import { ObjectId } from "mongodb";
+import { Types } from "mongoose";
 
-//  export type IContent={
-//  title:string,
-//  image:string,
-//  discription:string,
-// }
 
 export type TBlogPost = {
   title: string;
   content: string;
-  author: string;
+  author:Types.ObjectId;
   isPublished: boolean;
 }
 

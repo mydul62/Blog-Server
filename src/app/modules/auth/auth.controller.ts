@@ -5,8 +5,7 @@ import { AuthService } from "./auth.service";
 
 const userRegister = catchAsync(async (req, res) => {
   const {password,...remaining} = req.body;
-  
-  const result = await AuthService.userRegisterService(payload);
+  const result = await AuthService.userRegisterService(password,remaining);
   sendResponse(res, {
     success: true,
     message: 'User registered successfully',
