@@ -67,11 +67,17 @@ blogging-site-server/
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/mydul62/Blog-Server.git](https://github.com/mydul62/Blog-Server.git)
-   cd Blog-Server
+   git clone https://github.com/mydul62/Blog-Server.git
+  
+   ```
+. **then:**
+   ```bash
+  cd Blog-Server 
+  
    ```
 
-2. **Install dependencies:**
+
+ 2. **Install dependencies:**
    ```bash
    npm install
    ```
