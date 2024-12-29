@@ -31,7 +31,6 @@ const createBlog = catchAsync(async (req: Request, res: Response) => {
   throw new AppError(401, "Invalid author")
   }
  const data = {...req.body,author: userID};
- console.log(data)
   const result = await blogServices.createBlogIntoDB(data);
 
   sendResponse(res, {

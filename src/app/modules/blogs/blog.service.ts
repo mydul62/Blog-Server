@@ -9,7 +9,7 @@ const createBlogIntoDB = async (payload: TBlogPost) => {
 };
 const getAllBlogFromDB = async (quary:Record<string , unknown>) => {
   const queryMaker = new QueryMaker(
-    BlogPostModel.find().populate('author', 'name email'),
+    BlogPostModel.find().populate('author', ' _id name email role isBlocked'),
     quary,
   )
     .search(['title', 'content'])
@@ -19,7 +19,7 @@ const getAllBlogFromDB = async (quary:Record<string , unknown>) => {
   return result;
 };
 const getSingleBlogFromDB = async (id: string) => {
-  const result = await BlogPostModel.findById(id).populate('author');
+  const result = await BlogPostModel.findById(id).populate('author',' _id name email role isBlocked' );
   return result;
 };
 const deleteBlogFrom = async (id: string,userID:string) => {

@@ -13,7 +13,6 @@ const verifyToken = (RequestRole: string) => {
       const token = req.headers.authorization;
 
       if (!token) {
-        console.error("Authorization header is missing");
          res.status(401).json({ message: "Authorization header is missing" });
          return;
       }
@@ -27,7 +26,6 @@ const verifyToken = (RequestRole: string) => {
       if (!decoded) {
         throw new AppErrors(403, 'This user is not authorized');
       }
-      console.log(role,RequestRole)
       if (role !== RequestRole) {
         throw new AppErrors(403, 'Insufficient permissions for this role');
       }

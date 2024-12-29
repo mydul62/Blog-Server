@@ -35,14 +35,12 @@ export const errorHandler = (
   }
   else if (err instanceof mongoose.Error.ValidationError) {
     handleValidationError(err, res);
-    console.log('validation error')
   } 
   else if (err.name && err.name ==='ZodError') {
     ZodError(err, res);
-    console.log('Zod error')
   } 
   else if (err instanceof Error) {
-    const statusCode = err.statusCode || 500;
+    const statusCode =  500;
     res.status(statusCode).json({
       success: false,
       message: err.message,

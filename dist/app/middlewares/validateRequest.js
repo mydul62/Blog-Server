@@ -8,25 +8,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-/* eslint-disable no-console */
-const app_1 = __importDefault(require("./app"));
-const mongoose_1 = __importDefault(require("mongoose"));
-const config_1 = __importDefault(require("./app/config"));
-function main() {
-    return __awaiter(this, void 0, void 0, function* () {
+const validateRequest = (schema) => {
+    return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            yield mongoose_1.default.connect(config_1.default.database_url);
-            app_1.default.listen(config_1.default.port, () => {
-                console.log(`I am server  listening on port ${config_1.default.port}`);
+            yield schema.parseAsync({
+                body: req.body,
             });
+            next();
         }
-        catch (err) {
-            console.log(err);
+        catch (error) {
+            next(error);
         }
     });
-}
-main();
+};
+exports.default = validateRequest;

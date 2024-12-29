@@ -1,4 +1,3 @@
-import { string } from "zod";
 import { TAdmin } from "./admin.interface";
 import adminModel from "./admin.model";
 import userModel from "../user/user.model";

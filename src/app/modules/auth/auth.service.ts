@@ -19,17 +19,13 @@ const userRegisterService = async (password:string,remaining: TUser) => {
 };
 const userLoginService = async (payload: TUser) => {
   const RegisterUser = await userModel.findOne({ email: payload.email });
-  console.log(RegisterUser)
   if (!RegisterUser) {
     throw new AppErrors(404, 'Invalid credential');
   }
-  console.log( payload.password,
-    RegisterUser.password,)
   const matchPassword = await bcrypt.compare(
     payload.password,
     RegisterUser.password,
   );
-  console.log(matchPassword)
   if (!matchPassword) {
     throw new AppErrors(401, 'Invalid credential');
   }

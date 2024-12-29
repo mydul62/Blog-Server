@@ -17,19 +17,20 @@ class QueryMaker<T> {
     });
     return this;
   }
-  sort() {
-    const sortBy = (this.Query.sortBy as string) || 'createdAt';
-    const sortOrder = this.Query.sortOrder === 'asc' ? 1 : -1;
-    this.QueryModel = this.QueryModel.sort({ [sortBy]: sortOrder });
-    return this;
-  }
   filter() {
     const quaryObj = { ...this.Query };
     const ExculsiveFeild = ['search', 'sortBy', 'sortOrder'];
     ExculsiveFeild.forEach((key) => delete quaryObj[key]);
-    console.log(quaryObj)
-    this.QueryModel = this.QueryModel.find(quaryObj);
+    const queryObject = quaryObj.filter ? { author: quaryObj.filter } : {};
+    this.QueryModel = this.QueryModel.find(queryObject);
     return this;
   }
+  sort() {
+    const sortBy = (this.Query.sortBy as string) || 'createdAt';
+    const sortOrder = this.Query.sortOrder === 'desc' ? -1 : 1;
+    this.QueryModel = this.QueryModel.sort({ [sortBy]: sortOrder });
+    return this;
+  }
+ 
 }
 export default QueryMaker;
