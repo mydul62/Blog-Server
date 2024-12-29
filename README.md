@@ -1,5 +1,6 @@
 # Blogging Site Server
 
+
 This repository contains the server-side code for a blogging platform, built using Node.js, Express.js, TypeScript, and MongoDB (via Mongoose). This server provides RESTful APIs for managing blogs, user authentication, and admin functionalities.
 
 ## Features
@@ -21,6 +22,7 @@ This repository contains the server-side code for a blogging platform, built usi
 - **jsonwebtoken**: Secure authentication
 - **dotenv**: Manage environment variables
 
+***Server: https://assignment003-three.vercel.app***
 ## API Endpoints
 
 ### Blogs
