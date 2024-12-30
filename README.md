@@ -37,6 +37,7 @@ This repository contains the server-side code for a blogging platform, built usi
 - **Register a user**: `POST /api/auth/register`
 - **Login a user**: `POST /api/auth/login`
 - **Block a user by Admin**: `PUT /api/admin/users/:userId/block`
+- **UnBlock a user by Admin**: `PUT /api/admin/users/:userId/unblock`
 
 ## Project Structure
 
